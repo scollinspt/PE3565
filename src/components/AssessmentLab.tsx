@@ -43,7 +43,9 @@ function PrivacyDetails({ footer = false }: { footer?: boolean }) {
       <summary>Privacy and progress details</summary>
       <div>
         <ul>
-          <li>No name, email, account, grades, or analytics are collected.</li>
+          <li>The Lab does not collect names, email addresses, course accounts, grades, answers, pathway choices, XP, or individual progress.</li>
+          <li>Cloudflare Web Analytics collects cookie-free, aggregate traffic and performance information, such as page views, referrers, general location, and browser or device category.</li>
+          <li>Aggregate analytics are not connected to a student identity or course record.</li>
           <li>No progress information is sent to your instructor.</li>
           <li>Progress does not sync across devices or browsers.</li>
           <li>Private browsing or clearing site data may remove progress.</li>

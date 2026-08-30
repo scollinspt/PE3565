@@ -141,7 +141,9 @@ The first release tests whether the learning loop is useful and engaging. It inc
 - Meaning cannot depend on color alone.
 - Motion respects reduced-motion preferences.
 - Text and controls must remain usable on mobile and at browser zoom.
-- The prototype collects no names, accounts, grades, or analytics.
+- The prototype collects no names, email addresses, course accounts, grades, answers, pathway choices, XP, or individual progress.
+- Cloudflare Web Analytics provides cookie-free, aggregate page-traffic and performance measurements. No custom learning events are sent.
+- Aggregate analytics are not connected to student identities or course records.
 - Students can reset locally stored progress.
 - First-visit onboarding explains that progress is browser-local, does not sync across devices, and is not a Canvas grade or official course record.
 - A persistent footer disclosure explains what is not collected, when progress may be lost, and the educational boundary for Allied Health cases.
