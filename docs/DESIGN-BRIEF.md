@@ -125,6 +125,8 @@ The first release tests whether the learning loop is useful and engaging. It inc
 - Text and controls must remain usable on mobile and at browser zoom.
 - The prototype collects no names, accounts, grades, or analytics.
 - Students can reset locally stored progress.
+- First-visit onboarding explains that progress is browser-local, does not sync across devices, and is not a Canvas grade or official course record.
+- A persistent footer disclosure explains what is not collected, when progress may be lost, and the educational boundary for Allied Health cases.
 
 ## Public Content Boundary
 

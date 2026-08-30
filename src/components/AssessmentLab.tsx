@@ -33,14 +33,36 @@ type StoredProgress = {
 const STORAGE_KEY = 'pe3565-assessment-lab-progress-v1';
 const initialProgress: StoredProgress = { pathway: null, completed: [], xp: 0 };
 
+function PrivacyDetails({ footer = false }: { footer?: boolean }) {
+  return (
+    <details className={`privacy-details${footer ? ' footer-privacy' : ''}`}>
+      <summary>Privacy and progress details</summary>
+      <div>
+        <ul>
+          <li>No name, email, account, grades, or analytics are collected.</li>
+          <li>No progress information is sent to your instructor.</li>
+          <li>Progress does not sync across devices or browsers.</li>
+          <li>Private browsing or clearing site data may remove progress.</li>
+          <li>You can change pathways without losing conceptual progress.</li>
+        </ul>
+        <p>This is a practice environment, not an official course record. Allied Health cases are educational and do not provide clinical guidance.</p>
+      </div>
+    </details>
+  );
+}
+
 function PathwayChooser({ onChoose }: { onChoose: (pathway: PathwayId) => void }) {
   return (
     <section className="onboarding" aria-labelledby="welcome-title">
       <div className="onboarding-copy">
         <p className="section-label">PE3565 · Fall 2026</p>
         <h1 id="welcome-title">Assessment decisions begin with context.</h1>
-        <p className="lede">Choose the professional pathway closest to your work. The concepts stay shared; the cases, roles, and consequences adapt.</p>
-        <p className="privacy-note"><Eye size={17} aria-hidden="true" /> Your choice and progress remain in this browser.</p>
+        <p className="lede">Choose the pathway closest to your professional interests. You can change it later without losing conceptual progress.</p>
+        <div className="privacy-note">
+          <Eye size={19} aria-hidden="true" />
+          <p><strong>About your progress</strong>Your pathway, completed activities, and XP are saved only in this browser. Progress does not sync across devices or count as a Canvas grade.</p>
+        </div>
+        <PrivacyDetails />
       </div>
       <div className="course-art">
         <img src={`${import.meta.env.BASE_URL}/images/pe3565-course-graphic.png`} alt="Measurement and Assessment course graphic connecting performance testing, data analysis, improvement, quantitative analysis, collaborative interpretation, assessment, and measurement" />
@@ -365,7 +387,10 @@ export default function AssessmentLab() {
           <p>Created by <a href="https://scollinspt.github.io/">Sean M. Collins, PT, ScD <ExternalLink size={14} aria-hidden="true" /></a></p>
           <p>Plymouth State University · Educational use, not clinical decision support.</p>
         </div>
-        <button className="text-button reset-button" onClick={resetProgress}><RotateCcw size={16} aria-hidden="true" /> Reset progress</button>
+        <div className="footer-actions">
+          <PrivacyDetails footer />
+          <button className="text-button reset-button" onClick={resetProgress}><RotateCcw size={16} aria-hidden="true" /> Reset progress</button>
+        </div>
       </footer>
     </div>
   );
