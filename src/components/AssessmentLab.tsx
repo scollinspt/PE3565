@@ -219,6 +219,7 @@ export default function AssessmentLab() {
   const recommendedIndex = currentIndex === -1 ? activities.length - 1 : currentIndex;
   const activeActivity = activities.find((activity) => activity.id === displayedActivityId) ?? activities[recommendedIndex];
   const activeIndex = activities.findIndex((activity) => activity.id === activeActivity.id);
+  const nextActivity = activities[activeIndex + 1];
   const percent = Math.round((completedCount / activities.length) * 100);
   const level = Math.min(4, Math.floor(progress.xp / 35) + 1);
 
@@ -377,17 +378,29 @@ export default function AssessmentLab() {
             </ol>
           </div>
           <div className="activity-column">
-            {percent === 100 && (
-              <div className="achievement" role="status">
-                <Award size={30} aria-hidden="true" />
-                <div><p className="section-label">Accomplishment earned</p><h3>Alignment Analyst</h3><p>You traced evidence from a defined construct to a bounded professional decision across fields.</p></div>
+            <QuestionActivity activity={activeActivity} isComplete={progress.completed.includes(activeActivity.id)} onComplete={completeActivity} />
+            {progress.completed.includes(activeActivity.id) && nextActivity && (
+              <div className="next-step-panel">
+                <div>
+                  <p className="section-label">Activity {activeIndex + 1} of {activities.length} complete</p>
+                  <h3>Next: {nextActivity.marker}</h3>
+                  <p>{nextActivity.title}</p>
+                </div>
+                <button className="primary-button" onClick={() => setDisplayedActivityId(nextActivity.id)}>
+                  Start activity {activeIndex + 2} <ArrowRight size={18} aria-hidden="true" />
+                </button>
               </div>
             )}
-            <QuestionActivity activity={activeActivity} isComplete={progress.completed.includes(activeActivity.id)} onComplete={completeActivity} />
-            {progress.completed.includes(activeActivity.id) && activeIndex < activities.length - 1 && (
-              <button className="primary-button continue-button" onClick={() => setDisplayedActivityId(activities[activeIndex + 1].id)}>
-                Continue to next activity <ArrowRight size={18} aria-hidden="true" />
-              </button>
+            {progress.completed.includes(activeActivity.id) && !nextActivity && (
+              <div className="module-complete-panel" role="status">
+                <Award size={30} aria-hidden="true" />
+                <div>
+                  <p className="section-label">Module 1 complete · 7 of 7 activities</p>
+                  <h3>Alignment Analyst</h3>
+                  <p>You completed Foundations &amp; Alignment. Module 2, Timing, Purpose &amp; Approach, is planned for Sept. 14–23 and is not yet available in the Lab.</p>
+                  <a className="primary-button" href="#course-roadmap">View Module 2 and course timing <ArrowRight size={18} aria-hidden="true" /></a>
+                </div>
+              </div>
             )}
           </div>
         </section>

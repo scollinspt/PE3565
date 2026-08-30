@@ -137,11 +137,11 @@ const pathwayActivities: Record<PathwayId, Activity> = {
     context: 'An adventure educator wants to assess how well participants lead a group through an unfamiliar challenge-course task.',
     prompt: 'Which evidence is most directly aligned with the intended leadership-performance construct?',
     options: [
-      { text: 'Repeated observations of participants planning, communicating, adapting, and supporting the group during unfamiliar tasks', feedback: 'This directly samples leadership behavior across relevant situations rather than relying on a proxy.' },
       { text: 'A written quiz asking participants to recall the program definitions of effective leadership', feedback: 'The quiz could assess leadership knowledge, but knowing the definitions is not direct evidence of leading a group.' },
       { text: 'A self-rating asking participants how confident they feel when taking responsibility for a group', feedback: 'Confidence may matter, but it is a different construct from demonstrated leadership performance.' },
+      { text: 'Observations of planning, communication, adaptation, and group support across unfamiliar tasks', feedback: 'This directly samples leadership behavior across relevant situations rather than relying on a proxy.' },
       { text: 'A count of how often each participant volunteers to stand at the front of the group', feedback: 'Volunteering frequency is observable, but it does not adequately represent the quality of leadership.' },
-    ], correctIndex: 0,
+    ], correctIndex: 2,
     hint: 'Look for evidence that samples the performance itself across more than one opportunity.',
   },
   'physical-education': {
@@ -149,11 +149,11 @@ const pathwayActivities: Record<PathwayId, Activity> = {
     context: 'A physical educator wants to know whether students can apply safe and effective overhand-throw mechanics during play.',
     prompt: 'Which evidence is most directly aligned with the intended movement-performance construct?',
     options: [
-      { text: 'Structured observations of students using the critical movement elements during several game-like throwing tasks', feedback: 'This samples the intended psychomotor performance in relevant conditions and across several attempts.' },
       { text: 'A written quiz asking students to identify the critical elements of an overhand throw', feedback: 'This measures knowledge of the skill, not the ability to perform it during play.' },
+      { text: 'Observations of critical throwing elements across several game-like tasks', feedback: 'This samples the intended psychomotor performance in relevant conditions and across several attempts.' },
       { text: 'A tally of successful throws completed by each student during one short partner activity', feedback: 'Outcome counts can be useful, but one task may hide technique quality and ordinary performance variation.' },
       { text: 'A survey asking students how confident they feel about throwing during competitive games', feedback: 'Confidence is an affective construct, not direct evidence of throwing mechanics.' },
-    ], correctIndex: 0,
+    ], correctIndex: 1,
     hint: 'Choose the option that directly observes the intended skill in the setting where it should be used.',
   },
   'allied-health': {
@@ -161,11 +161,11 @@ const pathwayActivities: Record<PathwayId, Activity> = {
     context: 'An allied health student wants to describe a client’s functional balance while completing a planned mobility task.',
     prompt: 'Which evidence is most directly aligned with the intended functional-performance construct?',
     options: [
-      { text: 'Standardized observations of balance control while the client completes relevant mobility tasks under defined conditions', feedback: 'This directly samples functional balance through a consistent procedure in the relevant performance context.' },
       { text: 'A brief interview asking the client to describe situations in which balance feels difficult', feedback: 'Self-report adds useful context, but it is not direct evidence of observed functional balance performance.' },
       { text: 'A measurement of lower-extremity strength collected during an isolated testing procedure', feedback: 'Strength may influence balance, but it is a related construct rather than the intended functional performance.' },
       { text: 'A record of the number of appointments the client attended during the previous month', feedback: 'Attendance may affect opportunity for change but does not measure functional balance.' },
-    ], correctIndex: 0,
+      { text: 'Standardized balance observations during relevant mobility tasks under set conditions', feedback: 'This directly samples functional balance through a consistent procedure in the relevant performance context.' },
+    ], correctIndex: 3,
     hint: 'Separate a direct sample of balance performance from related characteristics and contextual information.',
   },
   'exercise-physiology': {
@@ -173,7 +173,7 @@ const pathwayActivities: Record<PathwayId, Activity> = {
     context: 'An exercise physiologist wants to assess an athlete’s ability to sustain aerobic work under a defined protocol.',
     prompt: 'Which evidence is most directly aligned with the intended aerobic-performance construct?',
     options: [
-      { text: 'Performance and physiological responses collected with a standardized sustained-exercise protocol appropriate to the athlete', feedback: 'This directly samples sustained aerobic work while defining the procedure needed to interpret the result.' },
+      { text: 'A standardized sustained-exercise test with relevant performance and physiological measures', feedback: 'This directly samples sustained aerobic work while defining the procedure needed to interpret the result.' },
       { text: 'The athlete’s description of how fit they currently feel compared with teammates', feedback: 'Perceived fitness can provide context, but it is not a direct measurement of aerobic performance.' },
       { text: 'A single resting heart-rate value recorded immediately after the athlete enters the laboratory', feedback: 'Resting heart rate is a measurement, but by itself it does not directly represent sustained aerobic performance.' },
       { text: 'The total number of training sessions the athlete completed during the previous month', feedback: 'Training exposure may help explain performance, but it does not measure the performance construct itself.' },
@@ -188,11 +188,11 @@ const commonActivities: Activity[] = [
     context: 'A student completes a timed single-leg stance while an observer records seconds until balance is lost.',
     prompt: 'Which part of this example is the construct?',
     options: [
-      { text: 'The student’s capacity to maintain postural control', feedback: 'The construct is the underlying characteristic the assessment is intended to represent.' },
       { text: 'The timed single-leg stance procedure', feedback: 'That is the measurement procedure used to gather information about the construct.' },
+      { text: 'Capacity to maintain postural control', feedback: 'The construct is the underlying characteristic the assessment is intended to represent.' },
       { text: 'The recorded time of 22 seconds', feedback: 'That is an observed result produced by the measurement procedure.' },
       { text: 'The decision to add more balance practice', feedback: 'That is a possible action informed by an interpretation of the evidence.' },
-    ], correctIndex: 0,
+    ], correctIndex: 1,
     hint: 'Ask what underlying ability the procedure is intended to represent.',
   },
   {
@@ -200,11 +200,11 @@ const commonActivities: Activity[] = [
     context: 'A learner compares two emergency-action plans and explains which one better protects participants in a given setting.',
     prompt: 'Which learning domain is most directly assessed?',
     options: [
-      { text: 'Cognitive, because the learner analyzes information and justifies a judgment', feedback: 'The task directly samples analysis and reasoning, both cognitive outcomes.' },
       { text: 'Psychomotor, because emergency response may eventually require coordinated action', feedback: 'The scenario concerns action, but this assessment asks for analysis and justification rather than physical performance.' },
       { text: 'Affective, because safety decisions may reflect responsibility and concern for others', feedback: 'Values may influence the response, but the task directly elicits analysis of plans.' },
       { text: 'Psychomotor, because selecting a plan is an observable response made by the learner', feedback: 'Being observable does not make a response psychomotor; the intended thinking is what matters here.' },
-    ], correctIndex: 0,
+      { text: 'Cognitive, because the learner analyzes information and justifies a judgment', feedback: 'The task directly samples analysis and reasoning, both cognitive outcomes.' },
+    ], correctIndex: 3,
     hint: 'Focus on what the learner must demonstrate, not the topic being discussed.',
   },
   {
@@ -212,11 +212,11 @@ const commonActivities: Activity[] = [
     context: 'After instruction, a class mean rises from 68 to 78 on a knowledge assessment.',
     prompt: 'Which statement stays closest to the evidence currently available?',
     options: [
-      { text: 'The class mean was 10 points higher after instruction, though the cause and meaning of the change require more evidence', feedback: 'This accurately describes the result while keeping causal and practical conclusions appropriately limited.' },
       { text: 'The instruction caused every student to master the intended knowledge', feedback: 'A group mean cannot establish individual mastery or prove that instruction caused the change.' },
       { text: 'The assessment is valid because the class earned a higher score after instruction', feedback: 'Score improvement does not establish that the assessment supports its intended interpretation.' },
+      { text: 'The class mean rose 10 points; the cause and meaning of that change remain uncertain', feedback: 'This accurately describes the result while keeping causal and practical conclusions appropriately limited.' },
       { text: 'The class improved meaningfully because any increase in a group average reflects learning', feedback: 'The size, consistency, cause, and practical importance of the change still need evaluation.' },
-    ], correctIndex: 0,
+    ], correctIndex: 2,
     hint: 'Choose the statement that describes what happened without claiming more than the two means show.',
   },
   {
@@ -224,7 +224,7 @@ const commonActivities: Activity[] = [
     context: 'The intended outcome is “demonstrate effective communication while leading a group through an unfamiliar problem.”',
     prompt: 'Which assessment is best aligned with that outcome?',
     options: [
-      { text: 'Observe and rate communication during several unfamiliar group problems using explicit performance criteria', feedback: 'The task, setting, evidence, and scoring criteria all align with the intended performance.' },
+      { text: 'Rate communication in unfamiliar group problems using explicit criteria', feedback: 'The task, setting, evidence, and scoring criteria all align with the intended performance.' },
       { text: 'Ask learners to define effective communication on a multiple-choice quiz', feedback: 'This efficiently assesses recognition of knowledge, not communication performance while leading.' },
       { text: 'Count how many times each learner speaks during one familiar group activity', feedback: 'Speaking frequency is too narrow a proxy, and one familiar task provides limited evidence.' },
       { text: 'Let group members select the person they most enjoyed working with', feedback: 'Preference and likability should not substitute for evidence of the intended communication construct.' },
@@ -239,44 +239,44 @@ const transferActivities: Record<PathwayId, Activity> = {
     context: 'A physical educator wants to assess whether students can create space during a small-sided game.',
     prompt: 'Which choice best transfers the alignment principle from your pathway?',
     options: [
-      { text: 'Observe movement decisions during several small-sided games using criteria for timing, position, and response to play', feedback: 'The construct is sampled directly in the context where tactical movement must be used.' },
       { text: 'Ask students to label open spaces on a static court diagram after the lesson', feedback: 'This measures recognition on a diagram, not the ability to create space dynamically during play.' },
       { text: 'Record each student’s running speed during an isolated sprint test', feedback: 'Speed may affect play but is distinct from tactical movement decisions.' },
       { text: 'Ask teammates which student appears most athletic during games', feedback: 'A global impression of athleticism is not defined evidence of creating space.' },
-    ], correctIndex: 0, hint: 'The professional setting changed, but direct alignment still requires sampling the intended performance.',
+      { text: 'Rate timing, position, and responses during several small-sided games', feedback: 'The construct is sampled directly in the context where tactical movement must be used.' },
+    ], correctIndex: 3, hint: 'The professional setting changed, but direct alignment still requires sampling the intended performance.',
   },
   'physical-education': {
     id: 'transfer-check', marker: 'Cross-field transfer', title: 'From the gym to adventure education', xp: 15,
     context: 'An adventure educator wants to assess how participants adapt a route plan when weather and group capacity change.',
     prompt: 'Which choice best transfers the alignment principle from your pathway?',
     options: [
-      { text: 'Present changing field information and evaluate how participants revise and justify a workable route plan', feedback: 'The task directly elicits adaptive planning under the conditions named in the outcome.' },
       { text: 'Ask participants to recall the original route plan from memory before departing', feedback: 'Recall of the original plan does not demonstrate adaptation to changing conditions.' },
       { text: 'Time how quickly participants can pack required equipment into their bags', feedback: 'Packing speed is a separate performance and does not represent adaptive route planning.' },
+      { text: 'Assess revised route plans as field conditions change', feedback: 'The task directly elicits adaptive planning under the conditions named in the outcome.' },
       { text: 'Count the number of prior trips each participant has completed with the program', feedback: 'Experience may affect performance, but it is not evidence of the intended adaptive decision-making.' },
-    ], correctIndex: 0, hint: 'Preserve the principle: the assessment should require the same kind of thinking or performance as the outcome.',
+    ], correctIndex: 2, hint: 'Preserve the principle: the assessment should require the same kind of thinking or performance as the outcome.',
   },
   'allied-health': {
     id: 'transfer-check', marker: 'Cross-field transfer', title: 'From function to exercise physiology', xp: 15,
     context: 'An exercise physiologist wants to assess whether students can interpret an athlete’s response to a standardized workload.',
     prompt: 'Which choice best transfers the alignment principle from your pathway?',
     options: [
-      { text: 'Provide workload and response data, then ask students to interpret the pattern and justify a bounded conclusion', feedback: 'The evidence directly samples interpretation of a physiological response, including its limits.' },
       { text: 'Ask students to list the names of common laboratory instruments from memory', feedback: 'Instrument recall is useful knowledge but does not demonstrate interpretation of response data.' },
+      { text: 'Provide response data and assess each interpretation and bounded conclusion', feedback: 'The evidence directly samples interpretation of a physiological response, including its limits.' },
       { text: 'Grade students according to how closely their own fitness resembles the athlete’s fitness', feedback: 'A student’s fitness is irrelevant to the intended interpretation outcome.' },
       { text: 'Count the number of data values students can enter into a spreadsheet in one minute', feedback: 'Data-entry speed does not represent the quality of physiological interpretation.' },
-    ], correctIndex: 0, hint: 'Look for a task that requires students to perform the interpretation named in the outcome.',
+    ], correctIndex: 1, hint: 'Look for a task that requires students to perform the interpretation named in the outcome.',
   },
   'exercise-physiology': {
     id: 'transfer-check', marker: 'Cross-field transfer', title: 'From the laboratory to allied health', xp: 15,
     context: 'An allied health educator wants to assess whether students communicate accessible instructions for a functional task.',
     prompt: 'Which choice best transfers the alignment principle from your pathway?',
     options: [
-      { text: 'Have students deliver instructions to varied learners and evaluate clarity, adaptation, and confirmation of understanding', feedback: 'The performance directly samples accessible communication and adaptation in a relevant context.' },
       { text: 'Ask students to identify communication terms on a written vocabulary quiz', feedback: 'Terminology knowledge does not establish the ability to communicate accessibly with a learner.' },
       { text: 'Measure how loudly each student can repeat a standard set of task instructions', feedback: 'Volume alone does not represent clarity, adaptation, or confirmation of understanding.' },
       { text: 'Record whether each student attended the lecture about accessible communication', feedback: 'Attendance indicates opportunity to learn, not demonstrated communication performance.' },
-    ], correctIndex: 0, hint: 'Direct evidence should require the student to demonstrate accessible communication, not merely know about it.',
+      { text: 'Assess how students adapt instructions and confirm learner understanding', feedback: 'The performance directly samples accessible communication and adaptation in a relevant context.' },
+    ], correctIndex: 3, hint: 'Direct evidence should require the student to demonstrate accessible communication, not merely know about it.',
   },
 };
 
@@ -286,29 +286,29 @@ const decisionActivities: Record<PathwayId, Activity> = {
     context: 'Before a multi-day field experience, participants explain emergency procedures accurately. During two simulations, however, several fail to communicate changing conditions or adjust the plan. The instructor must decide what happens next.',
     prompt: 'Which decision is best supported by the available evidence?',
     options: [
-      { text: 'Provide targeted practice in communication and adaptation, then reassess those performances before making the readiness decision', feedback: 'This distinguishes procedural knowledge from demonstrated performance and uses the current evidence formatively before a consequential decision.' },
       { text: 'Approve readiness because accurate explanations establish that participants understand the emergency procedures', feedback: 'Knowledge is relevant, but the observed performance shows that understanding has not yet transferred reliably to simulation.' },
+      { text: 'Practice communication and adaptation, then reassess both before deciding readiness', feedback: 'This distinguishes procedural knowledge from demonstrated performance and uses the current evidence formatively before a consequential decision.' },
       { text: 'Deny readiness permanently because two unsuccessful simulations prove the participants cannot adapt in the field', feedback: 'The evidence identifies a current performance need but does not justify a permanent or global conclusion.' },
       { text: 'Ignore the simulations because artificial tasks cannot contribute useful evidence about field performance', feedback: 'Simulations have limitations, but relevant standardized observations can still contribute evidence when interpreted cautiously.' },
-    ], correctIndex: 0, hint: 'Separate what participants know from what they demonstrated, then choose an action proportionate to the evidence.',
+    ], correctIndex: 1, hint: 'Separate what participants know from what they demonstrated, then choose an action proportionate to the evidence.',
   },
   'physical-education': {
     id: 'decision-challenge', marker: 'Decision Challenge', title: 'Instruction from mixed evidence', xp: 25,
     context: 'Students accurately identify the critical elements of an overhand throw. In repeated game-like observations, many use the elements during unopposed practice but lose them under defensive pressure.',
     prompt: 'Which instructional decision is best supported by the evidence?',
     options: [
-      { text: 'Use progressively pressured practice with focused feedback, then reassess mechanics across comparable game-like attempts', feedback: 'The evidence locates the difficulty in applying known mechanics under pressure and supports targeted instruction followed by comparable reassessment.' },
       { text: 'Move to a new unit because the knowledge results show that students have mastered the throwing outcome', feedback: 'Knowledge of critical elements does not establish consistent psychomotor performance under the intended conditions.' },
       { text: 'Lower every student’s grade because pressured performance is the only evidence that has educational value', feedback: 'The pressured observations matter, but the available evidence should guide learning before being reduced to a blanket grading decision.' },
       { text: 'Repeat the same written quiz because greater knowledge precision will resolve the performance inconsistency', feedback: 'A more precise knowledge score would not directly address transfer of mechanics into pressured performance.' },
-    ], correctIndex: 0, hint: 'Identify where performance changes, then match the next learning task and reassessment to that condition.',
+      { text: 'Use pressured practice with focused feedback, then reassess mechanics under comparable conditions', feedback: 'The evidence locates the difficulty in applying known mechanics under pressure and supports targeted instruction followed by comparable reassessment.' },
+    ], correctIndex: 3, hint: 'Identify where performance changes, then match the next learning task and reassessment to that condition.',
   },
   'allied-health': {
     id: 'decision-challenge', marker: 'Decision Challenge', title: 'A bounded functional conclusion', xp: 25,
     context: 'A client reports greater confidence with mobility. A standardized task score improves slightly, but the difference is within the assessment’s expected measurement error. Observations show better strategy use on one task but not another.',
     prompt: 'Which conclusion is best supported at this point?',
     options: [
-      { text: 'The evidence suggests improved confidence and task-specific strategy use, while a dependable overall performance change has not yet been established', feedback: 'This integrates multiple sources, respects measurement error, and limits the conclusion to the pattern actually observed.' },
+      { text: 'Confidence and strategy use improved; overall performance change is not yet established', feedback: 'This integrates multiple sources, respects measurement error, and limits the conclusion to the pattern actually observed.' },
       { text: 'Functional performance has clearly improved because self-reported confidence increased after practice', feedback: 'Confidence is meaningful but distinct from observed functional performance, and the score change remains within expected error.' },
       { text: 'No learning occurred because the standardized score did not exceed expected measurement error', feedback: 'The score does not establish dependable overall change, but observed strategy use and confidence provide other, appropriately limited evidence.' },
       { text: 'The assessment is invalid because the score and the client’s confidence changed by different amounts', feedback: 'Different constructs can change differently; disagreement alone does not establish invalidity.' },
@@ -319,11 +319,11 @@ const decisionActivities: Record<PathwayId, Activity> = {
     context: 'After a training block, an athlete completes a standardized aerobic protocol with a modestly better result. The test conditions were comparable, but the change is close to ordinary day-to-day variation and the athlete reports unusual fatigue.',
     prompt: 'Which decision is best supported by the available evidence?',
     options: [
-      { text: 'Treat the result as provisional, consider fatigue and expected variation, and collect comparable evidence before changing the training conclusion', feedback: 'This recognizes the observed improvement without treating one uncertain result as a settled change in aerobic performance.' },
       { text: 'Conclude that aerobic capacity improved because the protocol and scoring procedure were standardized', feedback: 'Standardization supports comparability but does not eliminate ordinary variation or establish meaningful change from one result.' },
       { text: 'Conclude that the training failed because the athlete reported fatigue during the reassessment', feedback: 'Fatigue may affect interpretation, but one report does not establish that the training failed.' },
+      { text: 'Treat the result as provisional and collect another comparable performance measure', feedback: 'This recognizes the observed improvement without treating one uncertain result as a settled change in aerobic performance.' },
       { text: 'Increase training load immediately because any better standardized result justifies progression', feedback: 'The result is not yet sufficiently trustworthy or contextualized to justify that stronger decision.' },
-    ], correctIndex: 0, hint: 'Ask whether one result near expected variation can support a confident change in the training conclusion.',
+    ], correctIndex: 2, hint: 'Ask whether one result near expected variation can support a confident change in the training conclusion.',
   },
 };
 
