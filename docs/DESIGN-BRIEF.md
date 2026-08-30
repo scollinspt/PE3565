@@ -114,18 +114,18 @@ The guide supports planning and conceptual transfer. Canvas and in-class announc
 
 Lab activities deliberately practice the interpretation, application, and bounded decision-making represented in the secure question banks. Consistent success is a useful readiness signal and should strengthen preparation, but the Lab does not predict or guarantee an examination grade. The midterm and final may also represent class activities, investigations, presentations, readings, discussions, and in-class problem solving, as specified in the syllabus.
 
-## Initial Vertical Prototype
+## Current Eight-Module Release
 
-The first release tests whether the learning loop is useful and engaging. It includes:
+The current release provides the complete self-paced course sequence. It includes:
 
 - Welcome and pathway selection
-- A five-part interactive assessment framework
-- One module on constructs, outcomes, and alignment
-- A pathway-specific case
-- Four quick checks with feedback and retries
-- A cross-field transfer check
-- An integrated Decision Challenge
-- Browser-saved pathway, XP, and completion state
+- Eight selectable modules with module-specific concept reviews
+- A pathway-specific case in every module
+- Four quick checks with feedback and retries in every module
+- A cross-field transfer check in every module
+- An integrated Decision Challenge in every module
+- Direct progression between activities and modules
+- Browser-saved pathway, current module, XP, and module completion state
 
 ## Progress Rules
 
@@ -133,7 +133,7 @@ The first release tests whether the learning loop is useful and engaging. It inc
 - Hints support progress and do not create permanent penalties.
 - Completion represents attempted and understood learning activities, not time spent on the site.
 - Students may change pathways without losing conceptual progress.
-- Progress is stored in the current browser for the prototype and is not an official grade record.
+- Progress is stored in the current browser and is not an official grade record.
 
 ## Accessibility and Privacy
 
@@ -141,7 +141,7 @@ The first release tests whether the learning loop is useful and engaging. It inc
 - Meaning cannot depend on color alone.
 - Motion respects reduced-motion preferences.
 - Text and controls must remain usable on mobile and at browser zoom.
-- The prototype collects no names, email addresses, course accounts, grades, answers, pathway choices, XP, or individual progress.
+- The Lab collects no names, email addresses, course accounts, grades, answers, pathway choices, XP, or individual progress.
 - Cloudflare Web Analytics provides cookie-free, aggregate page-traffic and performance measurements. No custom learning events are sent.
 - Aggregate analytics are not connected to student identities or course records.
 - Students can reset locally stored progress.
@@ -159,12 +159,12 @@ The Lab is an educational environment, not clinical decision support. It does no
 - Astro for static content and GitHub Pages output
 - React for the interactive lab experience
 - Structured TypeScript data for pathway variants and activities
-- Browser `localStorage` for prototype progress
+- Browser `localStorage` for module-scoped progress
 - Official Astro GitHub Action for deployment
 
-## Prototype Success Criteria
+## Release Success Criteria
 
-The prototype succeeds if students can:
+The release succeeds if students can:
 
 - Select and later change a professional pathway
 - Explain the difference between a construct, tool, and observed evidence
@@ -172,7 +172,8 @@ The prototype succeeds if students can:
 - Choose evidence aligned with an intended outcome
 - Recognize a conclusion that extends beyond the available evidence
 - Apply the same concept in a second professional context
-- Complete the module using keyboard or touch input
+- Navigate directly among all eight modules
+- Complete each module using keyboard or touch input
 - Leave and return without losing progress in the same browser
 
 Instructor review should also confirm that public practice content is accurate, professionally authentic, and distinct from secure examination items.

@@ -12,19 +12,18 @@ import {
   Gauge,
   GraduationCap,
   Lightbulb,
-  LockKeyhole,
   RotateCcw,
   Route,
   Target,
 } from 'lucide-react';
 import {
-  frameworkSteps,
   getActivities,
   modules,
   pathways,
   projectStages,
   reasoningChain,
   type Activity,
+  type ModuleId,
   type PathwayId,
 } from '../data/labContent';
 
@@ -32,10 +31,30 @@ type StoredProgress = {
   pathway: PathwayId | null;
   completed: string[];
   xp: number;
+  currentModuleId: ModuleId;
+  moduleProgress: Partial<Record<ModuleId, string[]>>;
 };
 
 const STORAGE_KEY = 'pe3565-assessment-lab-progress-v1';
-const initialProgress: StoredProgress = { pathway: null, completed: [], xp: 0 };
+const initialProgress: StoredProgress = { pathway: null, completed: [], xp: 0, currentModuleId: 1, moduleProgress: {} };
+
+function isModuleId(value: unknown): value is ModuleId {
+  return Number.isInteger(value) && Number(value) >= 1 && Number(value) <= 8;
+}
+
+function restoreProgress(saved: Partial<StoredProgress>): StoredProgress {
+  const legacyCompleted = Array.isArray(saved.completed) ? saved.completed : [];
+  const moduleProgress = saved.moduleProgress && typeof saved.moduleProgress === 'object' ? saved.moduleProgress : {};
+  const moduleOneCompleted = Array.from(new Set([...(moduleProgress[1] ?? []), ...legacyCompleted]));
+
+  return {
+    pathway: saved.pathway ?? null,
+    completed: legacyCompleted,
+    xp: typeof saved.xp === 'number' ? saved.xp : 0,
+    currentModuleId: isModuleId(saved.currentModuleId) ? saved.currentModuleId : 1,
+    moduleProgress: { ...moduleProgress, 1: moduleOneCompleted },
+  };
+}
 
 function PrivacyDetails({ footer = false }: { footer?: boolean }) {
   return (
@@ -190,7 +209,7 @@ export default function AssessmentLab() {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored) {
       try {
-        setProgress({ ...initialProgress, ...JSON.parse(stored) });
+        setProgress(restoreProgress(JSON.parse(stored)));
       } catch {
         window.localStorage.removeItem(STORAGE_KEY);
       }
@@ -213,21 +232,39 @@ export default function AssessmentLab() {
   if (!progress.pathway) return <PathwayChooser onChoose={choosePathway} />;
 
   const pathway = pathways.find((item) => item.id === progress.pathway)!;
-  const activities = getActivities(progress.pathway);
-  const completedCount = activities.filter((activity) => progress.completed.includes(activity.id)).length;
-  const currentIndex = activities.findIndex((activity) => !progress.completed.includes(activity.id));
+  const currentModule = modules.find((module) => module.id === progress.currentModuleId)!;
+  const activities = getActivities(progress.pathway, currentModule.id);
+  const completedActivities = progress.moduleProgress[currentModule.id] ?? [];
+  const completedCount = activities.filter((activity) => completedActivities.includes(activity.id)).length;
+  const currentIndex = activities.findIndex((activity) => !completedActivities.includes(activity.id));
   const recommendedIndex = currentIndex === -1 ? activities.length - 1 : currentIndex;
   const activeActivity = activities.find((activity) => activity.id === displayedActivityId) ?? activities[recommendedIndex];
   const activeIndex = activities.findIndex((activity) => activity.id === activeActivity.id);
   const nextActivity = activities[activeIndex + 1];
   const percent = Math.round((completedCount / activities.length) * 100);
-  const level = Math.min(4, Math.floor(progress.xp / 35) + 1);
+  const level = Math.min(8, Math.floor(progress.xp / 95) + 1);
+
+  function selectModule(moduleId: ModuleId) {
+    setProgress((current) => ({ ...current, currentModuleId: moduleId }));
+    setDisplayedActivityId(null);
+    setFrameworkIndex(0);
+    requestAnimationFrame(() => document.getElementById('module-intro')?.scrollIntoView());
+  }
 
   function completeActivity(activity: Activity) {
     setDisplayedActivityId(activity.id);
     setProgress((current) => {
-      if (current.completed.includes(activity.id)) return current;
-      return { ...current, completed: [...current.completed, activity.id], xp: current.xp + activity.xp };
+      const moduleCompleted = current.moduleProgress[currentModule.id] ?? [];
+      if (moduleCompleted.includes(activity.id)) return current;
+      return {
+        ...current,
+        completed: currentModule.id === 1 ? [...current.completed, activity.id] : current.completed,
+        xp: current.xp + activity.xp,
+        moduleProgress: {
+          ...current.moduleProgress,
+          [currentModule.id]: [...moduleCompleted, activity.id],
+        },
+      };
     });
   }
 
@@ -269,7 +306,7 @@ export default function AssessmentLab() {
       )}
 
       <main id="main-content">
-        <section className="course-orientation" aria-labelledby="orientation-title">
+        <section className="course-orientation" id="module-intro" aria-labelledby="orientation-title">
           <div className="orientation-intro">
             <BookOpen size={24} aria-hidden="true" />
             <div>
@@ -280,11 +317,11 @@ export default function AssessmentLab() {
           </div>
           <div className="orientation-course-link">
             <CalendarDays size={21} aria-hidden="true" />
-            <p><strong>In class: Aug. 31-Sept. 9</strong>Module 1 supports the opening course topics and establishes the reasoning used throughout all three project stages.</p>
+            <p><strong>In class: {currentModule.timing}</strong>Module {currentModule.id} supports {currentModule.project.toLowerCase()} and {currentModule.exam.toLowerCase()} preparation.</p>
           </div>
           <div className="orientation-actions" aria-label="Assessment Lab guide links">
-            <a href="#current-activity">Start Module 1</a>
-            <a href="#course-roadmap">Course timing</a>
+            <a href="#current-activity">{percent > 0 ? 'Continue' : 'Start'} Module {currentModule.id}</a>
+            <a href="#course-roadmap">Choose module</a>
             <a href="#project-guide">Project guide</a>
             <PrivacyDetails />
           </div>
@@ -296,9 +333,9 @@ export default function AssessmentLab() {
 
         <section className="lab-intro" aria-labelledby="lab-title">
           <div className="intro-copy">
-            <p className="section-label">Module 01 · Foundations & Alignment</p>
-            <h1 id="lab-title">Make the path from evidence to decision explicit.</h1>
-            <p>Practice the distinctions that make assessment results fair, meaningful, and professionally useful in {pathway.label}.</p>
+            <p className="section-label">Module {String(currentModule.id).padStart(2, '0')} · {currentModule.title}</p>
+            <h1 id="lab-title">{currentModule.headline}</h1>
+            <p>{currentModule.description} Apply the ideas in {pathway.label}.</p>
             <a className="primary-button" href="#current-activity">Continue module <ArrowRight size={18} aria-hidden="true" /></a>
           </div>
           <figure className="intro-art">
@@ -311,18 +348,18 @@ export default function AssessmentLab() {
           <div><Gauge size={22} aria-hidden="true" /><span>Module progress</span><strong>{percent}%</strong></div>
           <div className="module-track"><span style={{ width: `${percent}%` }} /></div>
           <div><Target size={22} aria-hidden="true" /><span>Activities</span><strong>{completedCount}/{activities.length}</strong></div>
-          <div><Award size={22} aria-hidden="true" /><span>Accomplishment</span><strong>{percent === 100 ? 'Alignment Analyst' : 'In progress'}</strong></div>
+          <div><Award size={22} aria-hidden="true" /><span>Accomplishment</span><strong>{percent === 100 ? currentModule.accomplishment : 'In progress'}</strong></div>
         </section>
 
         <section className="framework-section" aria-labelledby="framework-title">
           <div className="section-heading">
-            <p className="section-label">Assessment framework</p>
-            <h2 id="framework-title">Five questions organize the work.</h2>
-            <p>Assessment is the gathering and interpretation of evidence to support decisions. Select each question to inspect its role.</p>
+            <p className="section-label">{currentModule.conceptLabel}</p>
+            <h2 id="framework-title">{currentModule.conceptTitle}</h2>
+            <p>{currentModule.conceptIntro}</p>
           </div>
           <div className="framework-layout">
             <div className="framework-nav" role="tablist" aria-label="Assessment framework steps">
-              {frameworkSteps.map((step, index) => (
+              {currentModule.concepts.map((step, index) => (
                 <button
                   key={step.number}
                   role="tab"
@@ -335,9 +372,9 @@ export default function AssessmentLab() {
               ))}
             </div>
             <div className="framework-detail" id="framework-detail" role="tabpanel">
-              <span className="detail-number">{frameworkSteps[frameworkIndex].number}</span>
-              <h3>{frameworkSteps[frameworkIndex].summary}</h3>
-              <p>{frameworkSteps[frameworkIndex].detail}</p>
+              <span className="detail-number">{currentModule.concepts[frameworkIndex].number}</span>
+              <h3>{currentModule.concepts[frameworkIndex].summary}</h3>
+              <p>{currentModule.concepts[frameworkIndex].detail}</p>
             </div>
           </div>
         </section>
@@ -367,7 +404,7 @@ export default function AssessmentLab() {
             <h2 id="practice-title">Build the reasoning one decision at a time.</h2>
             <ol>
               {activities.map((activity, index) => {
-                const done = progress.completed.includes(activity.id);
+                const done = completedActivities.includes(activity.id);
                 return (
                   <li key={activity.id} data-state={done ? 'complete' : index === activeIndex ? 'current' : 'queued'}>
                     <span>{done ? <Check size={15} aria-hidden="true" /> : index + 1}</span>
@@ -378,8 +415,8 @@ export default function AssessmentLab() {
             </ol>
           </div>
           <div className="activity-column">
-            <QuestionActivity activity={activeActivity} isComplete={progress.completed.includes(activeActivity.id)} onComplete={completeActivity} />
-            {progress.completed.includes(activeActivity.id) && nextActivity && (
+            <QuestionActivity activity={activeActivity} isComplete={completedActivities.includes(activeActivity.id)} onComplete={completeActivity} />
+            {completedActivities.includes(activeActivity.id) && nextActivity && (
               <div className="next-step-panel">
                 <div>
                   <p className="section-label">Activity {activeIndex + 1} of {activities.length} complete</p>
@@ -391,14 +428,20 @@ export default function AssessmentLab() {
                 </button>
               </div>
             )}
-            {progress.completed.includes(activeActivity.id) && !nextActivity && (
+            {completedActivities.includes(activeActivity.id) && !nextActivity && (
               <div className="module-complete-panel" role="status">
                 <Award size={30} aria-hidden="true" />
                 <div>
-                  <p className="section-label">Module 1 complete · 7 of 7 activities</p>
-                  <h3>Alignment Analyst</h3>
-                  <p>You completed all currently available Lab activities. Your progress is saved in this browser.</p>
-                  <p>Module 2, Timing, Purpose &amp; Approach, is planned for Sept. 14–23 but its Lab activities are not yet available. Module 1 is the full set of activities available today.</p>
+                  <p className="section-label">Module {currentModule.id} complete · 7 of 7 activities</p>
+                  <h3>{currentModule.accomplishment}</h3>
+                  <p>You completed {currentModule.title}. Your progress is saved in this browser.</p>
+                  {currentModule.id < 8 ? (
+                    <button className="primary-button" onClick={() => selectModule((currentModule.id + 1) as ModuleId)}>
+                      Start Module {currentModule.id + 1}: {modules[currentModule.id].title} <ArrowRight size={18} aria-hidden="true" />
+                    </button>
+                  ) : (
+                    <p>You completed all eight Assessment Lab modules.</p>
+                  )}
                 </div>
               </div>
             )}
@@ -428,23 +471,27 @@ export default function AssessmentLab() {
           <div className="section-heading">
             <p className="section-label">Course progression</p>
             <h2 id="module-map-title">Eight modules, one connected practice.</h2>
-            <p>Module 1 is available now. Modules 2–8 show the planned course sequence but do not yet contain Lab activities. Some topics overlap because the project develops alongside the course.</p>
+            <p>All modules are available for self-paced practice. Select any module to begin or continue; syllabus windows show when each topic is emphasized in class.</p>
           </div>
           <ol>
-            {modules.map((module, index) => (
-              <li key={module.title} className={index === 0 ? 'available' : ''}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <small>{module.timing}</small>
-                <strong>{module.title}</strong>
-                <span className="module-project">{module.project}</span>
-                <span className="module-exam">{module.exam}</span>
-                {index === 0 ? (
-                  <span className="module-state">Available</span>
-                ) : (
-                  <span className="module-state planned"><LockKeyhole size={14} aria-hidden="true" /> Planned, not yet available</span>
-                )}
+            {modules.map((module) => {
+              const moduleActivities = getActivities(progress.pathway!, module.id);
+              const moduleCompleted = progress.moduleProgress[module.id] ?? [];
+              const moduleDone = moduleActivities.every((activity) => moduleCompleted.includes(activity.id));
+              const current = module.id === currentModule.id;
+              return (
+              <li key={module.title} className={current ? 'current' : ''}>
+                <button className="module-select" onClick={() => selectModule(module.id)} aria-current={current ? 'step' : undefined}>
+                  <span>{String(module.id).padStart(2, '0')}</span>
+                  <small>{module.timing}</small>
+                  <strong>{module.title}</strong>
+                  <span className="module-project">{module.project}</span>
+                  <span className="module-exam">{module.exam}</span>
+                  <span className="module-state">{moduleDone ? 'Complete' : current ? 'Current' : moduleCompleted.length > 0 ? 'Continue' : 'Open'}</span>
+                </button>
               </li>
-            ))}
+              );
+            })}
           </ol>
         </section>
       </main>

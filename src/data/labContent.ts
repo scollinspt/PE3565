@@ -1,4 +1,7 @@
+import { getAdditionalModuleActivities } from './additionalModuleContent';
+
 export type PathwayId = 'adventure' | 'physical-education' | 'allied-health' | 'exercise-physiology';
+export type ModuleId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 export type Pathway = {
   id: PathwayId;
@@ -18,6 +21,28 @@ export type Activity = {
   correctIndex: number;
   hint: string;
   xp: number;
+};
+
+export type ConceptStep = {
+  number: string;
+  title: string;
+  summary: string;
+  detail: string;
+};
+
+export type LabModule = {
+  id: ModuleId;
+  title: string;
+  timing: string;
+  project: string;
+  exam: string;
+  headline: string;
+  description: string;
+  conceptLabel: string;
+  conceptTitle: string;
+  conceptIntro: string;
+  concepts: ConceptStep[];
+  accomplishment: string;
 };
 
 export const pathways: Pathway[] = [
@@ -51,7 +76,7 @@ export const pathways: Pathway[] = [
   },
 ];
 
-export const frameworkSteps = [
+export const frameworkSteps: ConceptStep[] = [
   {
     number: '01',
     title: 'What is being assessed?',
@@ -93,15 +118,113 @@ export const reasoningChain = [
   { label: 'Decision', question: 'What happens next?', detail: 'An instructional or professional action integrating evidence, purpose, context, and judgment.' },
 ];
 
-export const modules = [
-  { title: 'Foundations & Alignment', timing: 'Aug. 31-Sept. 9', project: 'Project foundation', exam: 'Midterm + final' },
-  { title: 'Timing, Purpose & Approach', timing: 'Sept. 14-23', project: 'Investigation I', exam: 'Midterm + final' },
-  { title: 'Tools & Scoring', timing: 'Sept. 21-30', project: 'Investigation I', exam: 'Midterm + final' },
-  { title: 'Describing Performance', timing: 'Apply Sept. 28-30 · Study Oct. 26', project: 'Investigations I-II', exam: 'Final; midterm if announced' },
-  { title: 'Quality & Fairness', timing: 'Oct. 19-21', project: 'Investigation II', exam: 'Final' },
-  { title: 'Change & Repeated Measurement', timing: 'Oct. 12-28', project: 'Investigation II', exam: 'Final' },
-  { title: 'Relationships & Transfer', timing: 'Nov. 16', project: 'Investigation II + final', exam: 'Final' },
-  { title: 'Evidence-Informed Decisions', timing: 'Nov. 9-Dec. 9', project: 'Final project', exam: 'Cumulative final' },
+export const modules: LabModule[] = [
+  {
+    id: 1, title: 'Foundations & Alignment', timing: 'Aug. 31-Sept. 9', project: 'Project foundation', exam: 'Midterm + final',
+    headline: 'Make the path from evidence to decision explicit.',
+    description: 'Practice the distinctions that make assessment results fair, meaningful, and professionally useful.',
+    conceptLabel: 'Assessment framework', conceptTitle: 'Five questions organize the work.',
+    conceptIntro: 'Assessment is the gathering and interpretation of evidence to support decisions. Select each question to inspect its role.',
+    concepts: frameworkSteps, accomplishment: 'Alignment Analyst',
+  },
+  {
+    id: 2, title: 'Timing, Purpose & Approach', timing: 'Sept. 14-23', project: 'Investigation I', exam: 'Midterm + final',
+    headline: 'Collect evidence when it can answer the decision.',
+    description: 'Connect baseline, formative, summative, and retention assessment to the distinct decisions each can support.',
+    conceptLabel: 'Assessment design', conceptTitle: 'Timing and purpose change the meaning of evidence.',
+    conceptIntro: 'The same procedure can serve different purposes. Begin with the decision, then choose when and how to collect evidence.',
+    concepts: [
+      { number: '01', title: 'Baseline or preassessment', summary: 'Establish the starting point.', detail: 'Evidence collected before instruction or intervention describes initial performance and can guide planning.' },
+      { number: '02', title: 'Formative assessment', summary: 'Improve learning while it is developing.', detail: 'Evidence gathered during learning supports feedback, adaptation, and another opportunity to perform.' },
+      { number: '03', title: 'Summative assessment', summary: 'Judge performance at a defined endpoint.', detail: 'End-point evidence summarizes achievement for a reporting, grading, readiness, or program decision.' },
+      { number: '04', title: 'Retention and transfer', summary: 'Test whether performance lasts or travels.', detail: 'Delayed or changed-context assessment addresses persistence and application beyond the original learning conditions.' },
+      { number: '05', title: 'Assessment approach', summary: 'Match the approach to the intended use.', detail: 'Assessment of learning summarizes achievement; assessment for learning guides next steps; assessment as learning develops self-monitoring.' },
+    ], accomplishment: 'Purpose Planner',
+  },
+  {
+    id: 3, title: 'Tools & Scoring', timing: 'Sept. 21-30', project: 'Investigation I', exam: 'Midterm + final',
+    headline: 'Choose a tool that can represent the intended performance.',
+    description: 'Distinguish checklists, rating scales, rubrics, tests, and authentic tasks by the evidence and scoring they produce.',
+    conceptLabel: 'Tools and scoring', conceptTitle: 'The tool shapes what can be observed and claimed.',
+    conceptIntro: 'Select the procedure and scoring method together so that the recorded result preserves the qualities that matter.',
+    concepts: [
+      { number: '01', title: 'Checklist', summary: 'Record whether defined elements occur.', detail: 'Checklists support consistent observation of presence or absence but do not by themselves describe quality.' },
+      { number: '02', title: 'Rating scale', summary: 'Represent ordered levels of performance.', detail: 'Rating scales add gradation, but each level needs clear anchors to reduce ambiguous judgments.' },
+      { number: '03', title: 'Analytic rubric', summary: 'Score important dimensions separately.', detail: 'Analytic criteria preserve a performance profile and support dimension-specific feedback.' },
+      { number: '04', title: 'Holistic rubric', summary: 'Judge the performance as an integrated whole.', detail: 'A holistic score is efficient for an overall judgment but provides less diagnostic detail.' },
+      { number: '05', title: 'Standardization', summary: 'Make results meaningfully comparable.', detail: 'Consistent instructions, conditions, observation, and scoring reduce unwanted variation in the procedure.' },
+    ], accomplishment: 'Evidence Designer',
+  },
+  {
+    id: 4, title: 'Describing Performance', timing: 'Apply Sept. 28-30 · Study Oct. 26', project: 'Investigations I-II', exam: 'Final; midterm if announced',
+    headline: 'Describe the pattern before explaining it.',
+    description: 'Use distributions, centers, spread, standardized scores, and visual displays without extending beyond the observed data.',
+    conceptLabel: 'Describing results', conceptTitle: 'A useful summary preserves the pattern that matters.',
+    conceptIntro: 'No single statistic tells the whole story. Choose summaries and displays that fit the distribution and the comparison being made.',
+    concepts: [
+      { number: '01', title: 'Distribution', summary: 'Inspect the full pattern of results.', detail: 'Shape, clusters, gaps, and unusual values can matter even when two groups have the same average.' },
+      { number: '02', title: 'Center', summary: 'Locate a typical or central value.', detail: 'The mean uses every value; the median identifies the midpoint and is less influenced by extreme scores.' },
+      { number: '03', title: 'Spread', summary: 'Describe how much results vary.', detail: 'Range, interquartile range, and standard deviation address different aspects of variability.' },
+      { number: '04', title: 'Standardized score', summary: 'Express position relative to a reference distribution.', detail: 'A standardized score reports relative location in standard-deviation units; it does not establish mastery or cause.' },
+      { number: '05', title: 'Visualization', summary: 'Choose a view that reveals the needed comparison.', detail: 'Tables and graphs are representations of results. Scale, grouping, and omitted observations can change the impression they create.' },
+    ], accomplishment: 'Performance Interpreter',
+  },
+  {
+    id: 5, title: 'Quality & Fairness', timing: 'Oct. 19-21', project: 'Investigation II', exam: 'Final',
+    headline: 'Judge the evidence before trusting the decision.',
+    description: 'Evaluate reliability, validity, objectivity, error, accessibility, and fairness as limits on interpretation and use.',
+    conceptLabel: 'Assessment quality', conceptTitle: 'Trustworthy scores require defensible interpretation and use.',
+    conceptIntro: 'Quality is not a property established by one coefficient or label. It depends on the evidence, context, population, and decision.',
+    concepts: [
+      { number: '01', title: 'Reliability', summary: 'Examine consistency for the intended use.', detail: 'Reliable results limit random inconsistency, but consistency alone does not show that the intended construct was assessed.' },
+      { number: '02', title: 'Validity', summary: 'Evaluate the interpretation supported by evidence.', detail: 'Validity concerns whether evidence and theory support a particular interpretation and use of scores.' },
+      { number: '03', title: 'Objectivity', summary: 'Limit scorer-dependent variation.', detail: 'Clear criteria, training, and agreement checks can make judgments less dependent on who scores the performance.' },
+      { number: '04', title: 'Error', summary: 'Recognize uncertainty in every observed score.', detail: 'Observed results include the intended signal and sources of error; precision should match the evidence available.' },
+      { number: '05', title: 'Fairness and access', summary: 'Remove irrelevant barriers without changing the construct.', detail: 'Accessible procedures support equitable opportunity to demonstrate the intended outcome while preserving what is being assessed.' },
+    ], accomplishment: 'Quality Reviewer',
+  },
+  {
+    id: 6, title: 'Change & Repeated Measurement', timing: 'Oct. 12-28', project: 'Investigation II', exam: 'Final',
+    headline: 'Separate observed change from dependable change.',
+    description: 'Interpret repeated results using comparable conditions, expected variation, measurement error, and practical importance.',
+    conceptLabel: 'Repeated measurement', conceptTitle: 'A difference between scores is a starting point, not a conclusion.',
+    conceptIntro: 'Change claims require comparable measurements and a judgment about whether the difference exceeds expected noise and matters in context.',
+    concepts: [
+      { number: '01', title: 'Comparable conditions', summary: 'Hold irrelevant influences as stable as possible.', detail: 'Changes in instructions, equipment, setting, scorer, or participant state can compete with the explanation of real change.' },
+      { number: '02', title: 'Measurement error', summary: 'Expect some score fluctuation without true change.', detail: 'Repeated results vary. A small difference may reflect ordinary imprecision rather than a dependable shift.' },
+      { number: '03', title: 'Practice and fatigue', summary: 'Consider effects of repeated testing itself.', detail: 'Familiarity can improve a result and fatigue can reduce it even when the underlying construct has not changed.' },
+      { number: '04', title: 'Dependable change', summary: 'Ask whether the difference exceeds expected variation.', detail: 'Statistical or measurement thresholds can strengthen a change claim but still require contextual interpretation.' },
+      { number: '05', title: 'Meaningful change', summary: 'Connect magnitude to professional importance.', detail: 'A dependable difference may be too small to matter, while a valued change may remain uncertain when measurement is imprecise.' },
+    ], accomplishment: 'Change Analyst',
+  },
+  {
+    id: 7, title: 'Relationships & Transfer', timing: 'Nov. 16', project: 'Investigation II + final', exam: 'Final',
+    headline: 'Use relationships carefully and test performance beyond practice.',
+    description: 'Interpret association without claiming causation, and distinguish near transfer, far transfer, and generalization across settings.',
+    conceptLabel: 'Relationships and transfer', conceptTitle: 'Covariation and transfer answer different questions.',
+    conceptIntro: 'A relationship describes how variables vary together. Transfer asks whether learning is expressed under changed tasks, settings, or time.',
+    concepts: [
+      { number: '01', title: 'Association', summary: 'Describe how two variables vary together.', detail: 'Direction and strength summarize a pattern; neither establishes that one variable caused the other.' },
+      { number: '02', title: 'Third variables', summary: 'Consider competing explanations.', detail: 'A shared cause, selection process, or contextual factor can produce or distort an observed relationship.' },
+      { number: '03', title: 'Generalizability', summary: 'Bound conclusions to people and conditions represented.', detail: 'Evidence from one sample, task, or setting may not support the same inference elsewhere.' },
+      { number: '04', title: 'Near transfer', summary: 'Apply learning in a similar situation.', detail: 'Near-transfer tasks change some features while preserving much of the original structure and demands.' },
+      { number: '05', title: 'Far transfer', summary: 'Apply a principle in a substantially different context.', detail: 'Far transfer requires recognizing the underlying idea when surface features and professional conditions change.' },
+    ], accomplishment: 'Transfer Reasoner',
+  },
+  {
+    id: 8, title: 'Evidence-Informed Decisions', timing: 'Nov. 9-Dec. 9', project: 'Final project', exam: 'Cumulative final',
+    headline: 'Integrate evidence without surrendering professional judgment.',
+    description: 'Combine results, quality limits, context, values, feasibility, and consequences into a transparent, bounded recommendation.',
+    conceptLabel: 'Decision integration', conceptTitle: 'A defensible decision makes its reasoning inspectable.',
+    conceptIntro: 'Evidence informs rather than dictates action. State what is known, what remains uncertain, and why the proposed next step is proportionate.',
+    concepts: [
+      { number: '01', title: 'Relevant evidence', summary: 'Use each source for the construct it represents.', detail: 'Performance, knowledge, self-report, contextual, and reference evidence contribute differently and should not be collapsed.' },
+      { number: '02', title: 'Quality and uncertainty', summary: 'Weight evidence by its strengths and limits.', detail: 'A decision should become more cautious when alignment, reliability, validity, precision, or representativeness is weak.' },
+      { number: '03', title: 'Context and values', summary: 'Include goals, resources, access, and stakeholder priorities.', detail: 'Professional decisions occur in real settings where benefits, burdens, feasibility, and values legitimately matter.' },
+      { number: '04', title: 'Proportional action', summary: 'Match the consequence to confidence in the evidence.', detail: 'High-stakes or irreversible actions generally require stronger and more convergent support than low-risk formative steps.' },
+      { number: '05', title: 'Transparent rationale', summary: 'Make the inferential path open to review.', detail: 'A defensible recommendation names the evidence, assumptions, uncertainty, alternatives, and plan for reassessment.' },
+    ], accomplishment: 'Assessment Decision Maker',
+  },
 ];
 
 export const projectStages = [
@@ -327,6 +450,8 @@ const decisionActivities: Record<PathwayId, Activity> = {
   },
 };
 
-export function getActivities(pathwayId: PathwayId): Activity[] {
+export function getActivities(pathwayId: PathwayId, moduleId: ModuleId = 1): Activity[] {
+  if (moduleId !== 1) return getAdditionalModuleActivities(moduleId, pathwayId);
+
   return [pathwayActivities[pathwayId], ...commonActivities, transferActivities[pathwayId], decisionActivities[pathwayId]];
 }

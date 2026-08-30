@@ -177,6 +177,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .module-complete-panel .section-label { color: #f2cf86; }
 .module-complete-panel h3 { margin-bottom: 8px; }
 .module-complete-panel p:not(.section-label) { max-width: 680px; color: #dbe7e3; }
+.module-complete-panel .primary-button { width: max-content; margin-top: 8px; color: var(--teal-deep); background: white; border-color: white; text-align: left; }
+.module-complete-panel .primary-button:hover { color: white; background: var(--copper); border-color: var(--copper); }
 
 .project-stages { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); list-style: none; }
 .project-stages > li { display: flex; min-height: 390px; padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); flex-direction: column; }
@@ -191,19 +193,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 
 .project-guide, .module-map { scroll-margin-top: 120px; }
 .module-map ol { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); list-style: none; }
-.module-map li { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto 1fr auto auto; min-height: 225px; padding: 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); background: var(--surface); }
-.module-map li > span:first-child { color: var(--copper); font-size: .72rem; font-weight: 700; }
-.module-map li > small { grid-column: 1 / -1; margin-top: 7px; font-size: .7rem; }
-.module-map li strong { grid-column: 1 / -1; align-self: end; max-width: 190px; margin: 22px 0 13px; font-family: var(--serif); }
-.module-map li svg { color: var(--muted); }
-.module-map li.available { color: white; background: var(--teal); }
-.module-map li.available > span:first-child, .module-map li.available > small { color: #f2cf86; }
+.module-map li { min-height: 225px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+.module-select { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto 1fr auto auto; width: 100%; height: 100%; min-height: 225px; padding: 20px; border: 0; color: var(--muted); background: transparent; text-align: left; cursor: pointer; }
+.module-select:hover { color: var(--ink); background: #eef4f0; }
+.module-select > span:first-child { color: var(--copper); font-size: .72rem; font-weight: 700; }
+.module-select > small { grid-column: 1 / -1; margin-top: 7px; font-size: .7rem; }
+.module-select strong { grid-column: 1 / -1; align-self: end; max-width: 190px; margin: 22px 0 13px; font-family: var(--serif); }
+.module-map li.current .module-select { color: white; background: var(--teal); box-shadow: inset 0 0 0 3px var(--pathway-accent); }
+.module-map li.current .module-select > span:first-child, .module-map li.current .module-select > small { color: #f2cf86; }
 .module-state { display: inline-flex; gap: 5px; align-items: center; width: max-content; font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-.module-state.planned { grid-column: 1 / -1; margin-top: 8px; color: var(--muted); letter-spacing: 0; }
 .module-project, .module-exam { grid-column: 1 / -1; font-size: .65rem; }
 .module-project { color: var(--teal); font-weight: 700; }
 .module-exam { margin-top: 3px; }
-.module-map li.available .module-project, .module-map li.available .module-exam { color: white; }
+.module-map li.current .module-project, .module-map li.current .module-exam { color: white; }
 
 .lab-footer { display: grid; grid-template-columns: 1fr 1fr auto; gap: 48px; align-items: end; width: var(--page); margin: 0 auto; padding: 52px 0 62px; color: var(--muted); font-size: .78rem; }
 .lab-footer p { margin-bottom: 5px; }
@@ -271,7 +273,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .answer-letter { display: none; }
   .activity-actions { align-items: stretch; flex-direction: column; }
   .next-step-panel { align-items: stretch; flex-direction: column; }
-  .next-step-panel .primary-button { width: 100%; }
+  .next-step-panel .primary-button, .module-complete-panel .primary-button { width: 100%; }
   .module-complete-panel { grid-template-columns: 1fr; }
   .module-map ol { grid-template-columns: 1fr; }
   .lab-footer { grid-template-columns: 1fr; gap: 24px; }
