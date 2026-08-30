@@ -177,8 +177,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .module-complete-panel .section-label { color: #f2cf86; }
 .module-complete-panel h3 { margin-bottom: 8px; }
 .module-complete-panel p:not(.section-label) { max-width: 680px; color: #dbe7e3; }
-.module-complete-panel .primary-button { width: max-content; margin-top: 8px; color: var(--teal-deep); background: white; border-color: white; }
-.module-complete-panel .primary-button:hover { color: white; background: var(--copper); border-color: var(--copper); }
 
 .project-stages { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); list-style: none; }
 .project-stages > li { display: flex; min-height: 390px; padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); flex-direction: column; }
@@ -200,7 +198,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .module-map li svg { color: var(--muted); }
 .module-map li.available { color: white; background: var(--teal); }
 .module-map li.available > span:first-child, .module-map li.available > small { color: #f2cf86; }
-.module-state { font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.module-state { display: inline-flex; gap: 5px; align-items: center; width: max-content; font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.module-state.planned { grid-column: 1 / -1; margin-top: 8px; color: var(--muted); letter-spacing: 0; }
 .module-project, .module-exam { grid-column: 1 / -1; font-size: .65rem; }
 .module-project { color: var(--teal); font-weight: 700; }
 .module-exam { margin-top: 3px; }
@@ -272,7 +271,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .answer-letter { display: none; }
   .activity-actions { align-items: stretch; flex-direction: column; }
   .next-step-panel { align-items: stretch; flex-direction: column; }
-  .next-step-panel .primary-button, .module-complete-panel .primary-button { width: 100%; }
+  .next-step-panel .primary-button { width: 100%; }
   .module-complete-panel { grid-template-columns: 1fr; }
   .module-map ol { grid-template-columns: 1fr; }
   .lab-footer { grid-template-columns: 1fr; gap: 24px; }

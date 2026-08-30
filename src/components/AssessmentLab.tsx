@@ -397,8 +397,8 @@ export default function AssessmentLab() {
                 <div>
                   <p className="section-label">Module 1 complete · 7 of 7 activities</p>
                   <h3>Alignment Analyst</h3>
-                  <p>You completed Foundations &amp; Alignment. Module 2, Timing, Purpose &amp; Approach, is planned for Sept. 14–23 and is not yet available in the Lab.</p>
-                  <a className="primary-button" href="#course-roadmap">View Module 2 and course timing <ArrowRight size={18} aria-hidden="true" /></a>
+                  <p>You completed all currently available Lab activities. Your progress is saved in this browser.</p>
+                  <p>Module 2, Timing, Purpose &amp; Approach, is planned for Sept. 14–23 but its Lab activities are not yet available. Module 1 is the full set of activities available today.</p>
                 </div>
               </div>
             )}
@@ -428,7 +428,7 @@ export default function AssessmentLab() {
           <div className="section-heading">
             <p className="section-label">Course progression</p>
             <h2 id="module-map-title">Eight modules, one connected practice.</h2>
-            <p>Use these syllabus windows to revisit a module before class application, project work, or exam review. Some topics overlap because the project develops alongside the course.</p>
+            <p>Module 1 is available now. Modules 2–8 show the planned course sequence but do not yet contain Lab activities. Some topics overlap because the project develops alongside the course.</p>
           </div>
           <ol>
             {modules.map((module, index) => (
@@ -438,7 +438,11 @@ export default function AssessmentLab() {
                 <strong>{module.title}</strong>
                 <span className="module-project">{module.project}</span>
                 <span className="module-exam">{module.exam}</span>
-                {index === 0 ? <span className="module-state">Available</span> : <LockKeyhole size={16} aria-label="Planned" />}
+                {index === 0 ? (
+                  <span className="module-state">Available</span>
+                ) : (
+                  <span className="module-state planned"><LockKeyhole size={14} aria-hidden="true" /> Planned, not yet available</span>
+                )}
               </li>
             ))}
           </ol>
