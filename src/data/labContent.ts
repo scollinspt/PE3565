@@ -94,14 +94,41 @@ export const reasoningChain = [
 ];
 
 export const modules = [
-  'Foundations & Alignment',
-  'Timing, Purpose & Approach',
-  'Tools & Scoring',
-  'Describing Performance',
-  'Quality & Fairness',
-  'Change & Repeated Measurement',
-  'Relationships & Transfer',
-  'Evidence-Informed Decisions',
+  { title: 'Foundations & Alignment', timing: 'Aug. 31-Sept. 9', project: 'Project foundation', exam: 'Midterm + final' },
+  { title: 'Timing, Purpose & Approach', timing: 'Sept. 14-23', project: 'Investigation I', exam: 'Midterm + final' },
+  { title: 'Tools & Scoring', timing: 'Sept. 21-30', project: 'Investigation I', exam: 'Midterm + final' },
+  { title: 'Describing Performance', timing: 'Apply Sept. 28-30 · Study Oct. 26', project: 'Investigations I-II', exam: 'Final; midterm if announced' },
+  { title: 'Quality & Fairness', timing: 'Oct. 19-21', project: 'Investigation II', exam: 'Final' },
+  { title: 'Change & Repeated Measurement', timing: 'Oct. 12-28', project: 'Investigation II', exam: 'Final' },
+  { title: 'Relationships & Transfer', timing: 'Nov. 16', project: 'Investigation II + final', exam: 'Final' },
+  { title: 'Evidence-Informed Decisions', timing: 'Nov. 9-Dec. 9', project: 'Final project', exam: 'Cumulative final' },
+];
+
+export const projectStages = [
+  {
+    number: '01',
+    title: 'Describe and compare performance',
+    timing: 'Plan Sept. 28-30 · Present Oct. 5-7',
+    modules: 'Modules 1-3 + early Module 4 application',
+    detail: 'Define a meaningful assessment problem, select and standardize a method, collect initial data, and communicate patterns in performance.',
+    result: 'Applied Assessment Investigation I · 15 points',
+  },
+  {
+    number: '02',
+    title: 'Evaluate quality and meaningful change',
+    timing: 'Develop Oct. 12-28 · Present Nov. 2-4',
+    modules: 'Modules 4-6; Module 7 extends this work',
+    detail: 'Extend the same investigation with repeated measurements or related variables, then judge variation, reliability, relationships, and meaningful change.',
+    result: 'Applied Assessment Investigation II · 15 points',
+  },
+  {
+    number: '03',
+    title: 'Make and defend a decision',
+    timing: 'Workshops Nov. 16-Dec. 2 · Present Dec. 2-9',
+    modules: 'All modules, especially Module 8',
+    detail: 'Revise and integrate both investigations, evaluate limitations and fairness, and defend an evidence-informed professional recommendation.',
+    result: 'Assessment and Decision Project · 30 points',
+  },
 ];
 
 const pathwayActivities: Record<PathwayId, Activity> = {

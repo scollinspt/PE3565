@@ -96,6 +96,24 @@ Early activities use clearly best answers to establish distinctions. Later Decis
 7. Relationships, Generalizability, and Transfer
 8. Evidence-Informed Assessment Decisions
 
+The in-course experience includes a compact orientation near the top of every module page. It tells students how to use the Lab, identifies the corresponding tentative syllabus window, links to practice and course guidance, and explains the boundary between aligned exam preparation and a guaranteed grade.
+
+The course roadmap displays when each topic is introduced or applied in class, how it supports the semester project, and whether it contributes to midterm or final preparation. Overlapping dates are intentional where students apply an idea in a project before its later formal treatment.
+
+## Semester Project Guide
+
+The Lab connects its modules to the three cumulative graded stages in the syllabus:
+
+1. **Applied Assessment Investigation I:** define the problem, choose and standardize a method, collect initial data, and describe or compare performance.
+2. **Applied Assessment Investigation II:** extend the investigation to examine measurement quality, variation, relationships, or meaningful change.
+3. **Assessment and Decision Project:** revise and integrate both investigations, evaluate limitations and fairness, and defend an evidence-informed recommendation.
+
+The guide supports planning and conceptual transfer. Canvas and in-class announcements remain the official sources for deadlines, group instructions, submission requirements, and schedule changes.
+
+## Exam Preparation Boundary
+
+Lab activities deliberately practice the interpretation, application, and bounded decision-making represented in the secure question banks. Consistent success is a useful readiness signal and should strengthen preparation, but the Lab does not predict or guarantee an examination grade. The midterm and final may also represent class activities, investigations, presentations, readings, discussions, and in-class problem solving, as specified in the syllabus.
+
 ## Initial Vertical Prototype
 
 The first release tests whether the learning loop is useful and engaging. It includes:

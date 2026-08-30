@@ -92,7 +92,22 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .status-band span { color: var(--muted); font-size: .71rem; text-transform: uppercase; }
 .status-band strong { font-size: .85rem; }
 
-.framework-section, .reasoning-section, .practice-section, .module-map { width: var(--page); margin: 0 auto; padding: 96px 0; border-bottom: 1px solid var(--line); }
+.course-orientation { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px 48px; width: var(--page); margin: 30px auto 0; padding: 25px 0; border-top: 3px solid var(--green); border-bottom: 1px solid var(--line); }
+.orientation-intro { display: grid; grid-template-columns: auto 1fr; gap: 14px; }
+.orientation-intro > svg, .orientation-course-link > svg, .exam-readiness > svg { margin-top: 3px; color: var(--pathway-accent); }
+.orientation-intro .section-label { margin-bottom: 5px; }
+.orientation-intro h2 { margin-bottom: 8px; font: 600 1.25rem/1.25 var(--serif); }
+.orientation-intro p:last-child, .orientation-course-link p, .exam-readiness p { margin: 0; color: var(--muted); font-size: .82rem; }
+.orientation-course-link { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+.orientation-course-link strong { display: block; margin-bottom: 3px; color: var(--ink); }
+.orientation-actions { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: start; padding-left: 38px; }
+.orientation-actions > a, .orientation-actions summary { color: var(--teal); font-size: .78rem; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.orientation-actions .privacy-details { font-size: .78rem; }
+.orientation-actions .privacy-details > div { position: absolute; z-index: 20; width: min(520px, calc(100vw - 32px)); box-shadow: 0 12px 32px rgb(23 39 35 / 14%); }
+.exam-readiness { display: grid; grid-template-columns: auto 1fr; gap: 12px; padding-top: 18px; border-top: 1px solid var(--soft-line); }
+.exam-readiness strong { color: var(--ink); }
+
+.framework-section, .reasoning-section, .practice-section, .project-guide, .module-map { width: var(--page); margin: 0 auto; padding: 96px 0; border-bottom: 1px solid var(--line); }
 .framework-layout { display: grid; grid-template-columns: minmax(320px, .8fr) 1.2fr; border: 1px solid var(--line); background: var(--surface); }
 .framework-nav { display: grid; border-right: 1px solid var(--line); }
 .framework-nav button { display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: center; min-height: 64px; padding: 12px 18px; border: 0; border-bottom: 1px solid var(--soft-line); background: transparent; font-weight: 600; text-align: left; cursor: pointer; }
@@ -116,7 +131,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .chain-detail svg { color: var(--copper); }
 .chain-detail p { margin: 5px 0 0; color: var(--muted); }
 
-.practice-section { display: grid; grid-template-columns: minmax(280px, .7fr) minmax(0, 1.3fr); gap: 7vw; align-items: start; scroll-margin-top: 90px; }
+.practice-section { display: grid; grid-template-columns: minmax(280px, .7fr) minmax(0, 1.3fr); gap: 7vw; align-items: start; scroll-margin-top: 120px; }
 .practice-sidebar { position: sticky; top: 105px; }
 .practice-sidebar h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); }
 .practice-sidebar ol { margin: 38px 0 0; padding: 0; list-style: none; }
@@ -159,14 +174,31 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .achievement h3 { margin-bottom: 8px; }
 .achievement p:last-child { margin-bottom: 0; color: #dbe7e3; }
 
+.project-stages { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); list-style: none; }
+.project-stages > li { display: flex; min-height: 390px; padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); flex-direction: column; }
+.project-stage-heading { display: flex; gap: 18px; align-items: start; justify-content: space-between; }
+.project-stage-heading > span { color: var(--copper); font-weight: 700; }
+.project-stage-heading small { max-width: 170px; color: var(--muted); text-align: right; }
+.project-stages h3 { max-width: 280px; margin: 52px 0 18px; font-size: 1.45rem; }
+.project-stages p { color: var(--muted); font-size: .9rem; }
+.project-stage-meta { display: grid; gap: 8px; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--soft-line); font-size: .75rem; }
+.project-stage-meta span { color: var(--teal); font-weight: 700; }
+.schedule-note { max-width: 850px; margin: 22px 0 0; color: var(--muted); font-size: .78rem; }
+
+.project-guide, .module-map { scroll-margin-top: 120px; }
 .module-map ol { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); list-style: none; }
-.module-map li { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr; min-height: 150px; padding: 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); background: var(--surface); }
+.module-map li { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto 1fr auto auto; min-height: 225px; padding: 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); background: var(--surface); }
 .module-map li > span:first-child { color: var(--copper); font-size: .72rem; font-weight: 700; }
-.module-map li strong { align-self: end; max-width: 190px; font-family: var(--serif); }
+.module-map li > small { grid-column: 1 / -1; margin-top: 7px; font-size: .7rem; }
+.module-map li strong { grid-column: 1 / -1; align-self: end; max-width: 190px; margin: 22px 0 13px; font-family: var(--serif); }
 .module-map li svg { color: var(--muted); }
 .module-map li.available { color: white; background: var(--teal); }
-.module-map li.available > span:first-child { color: #f2cf86; }
+.module-map li.available > span:first-child, .module-map li.available > small { color: #f2cf86; }
 .module-state { font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.module-project, .module-exam { grid-column: 1 / -1; font-size: .65rem; }
+.module-project { color: var(--teal); font-weight: 700; }
+.module-exam { margin-top: 3px; }
+.module-map li.available .module-project, .module-map li.available .module-exam { color: white; }
 
 .lab-footer { display: grid; grid-template-columns: 1fr 1fr auto; gap: 48px; align-items: end; width: var(--page); margin: 0 auto; padding: 52px 0 62px; color: var(--muted); font-size: .78rem; }
 .lab-footer p { margin-bottom: 5px; }
@@ -188,6 +220,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .header-progress { grid-row: 2; grid-column: 1 / -1; width: 100%; padding-top: 9px; }
   .pathway-switcher { top: 99px; flex-direction: column; align-items: start; padding-inline: 20px; }
   .lab-intro { padding-top: 58px; }
+  .course-orientation { grid-template-columns: 1fr; }
+  .orientation-actions { padding-left: 38px; }
+  .orientation-actions .privacy-details > div { position: static; }
   .status-band { grid-template-columns: auto 1fr auto; padding-inline: 20px; }
   .status-band > div:last-child { display: none; }
   .chain { grid-template-columns: repeat(3, 1fr); }
@@ -198,6 +233,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .practice-sidebar li div { display: block; }
   .practice-sidebar li small { display: block; }
   .module-map ol { grid-template-columns: repeat(2, 1fr); }
+  .project-stages { grid-template-columns: 1fr; }
+  .project-stages > li { min-height: 300px; }
   .lab-footer { grid-template-columns: 1fr 1fr; }
   .footer-actions { justify-items: start; }
   .footer-privacy > div { right: auto; left: 0; }
@@ -211,7 +248,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .pathway-option { min-height: 190px; }
   .lab-brand strong { display: none; }
   .pathway-button { font-size: .75rem; }
-  .framework-section, .reasoning-section, .practice-section, .module-map { padding: 70px 0; }
+  .framework-section, .reasoning-section, .practice-section, .project-guide, .module-map { padding: 70px 0; }
+  .course-orientation { margin-top: 18px; }
+  .orientation-actions { padding-left: 0; }
   .status-band { grid-template-columns: 1fr auto; gap: 14px; }
   .status-band > div:first-child { display: none; }
   .framework-layout { grid-template-columns: 1fr; }

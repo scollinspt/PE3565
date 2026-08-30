@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import {
   ArrowRight,
   Award,
+  BookOpen,
+  CalendarDays,
   Check,
   ChevronRight,
   Compass,
   ExternalLink,
   Eye,
   Gauge,
+  GraduationCap,
   Lightbulb,
   LockKeyhole,
   RotateCcw,
@@ -19,6 +22,7 @@ import {
   getActivities,
   modules,
   pathways,
+  projectStages,
   reasoningChain,
   type Activity,
   type PathwayId,
@@ -262,6 +266,31 @@ export default function AssessmentLab() {
       )}
 
       <main id="main-content">
+        <section className="course-orientation" aria-labelledby="orientation-title">
+          <div className="orientation-intro">
+            <BookOpen size={24} aria-hidden="true" />
+            <div>
+              <p className="section-label">Start here</p>
+              <h2 id="orientation-title">Learn the idea. Test the reasoning. Use it in your project.</h2>
+              <p>Review each concept, complete seven case-based activities, use the feedback to revise, and finish with a professional Decision Challenge.</p>
+            </div>
+          </div>
+          <div className="orientation-course-link">
+            <CalendarDays size={21} aria-hidden="true" />
+            <p><strong>In class: Aug. 31-Sept. 9</strong>Module 1 supports the opening course topics and establishes the reasoning used throughout all three project stages.</p>
+          </div>
+          <div className="orientation-actions" aria-label="Assessment Lab guide links">
+            <a href="#current-activity">Start Module 1</a>
+            <a href="#course-roadmap">Course timing</a>
+            <a href="#project-guide">Project guide</a>
+            <PrivacyDetails />
+          </div>
+          <div className="exam-readiness">
+            <GraduationCap size={22} aria-hidden="true" />
+            <p><strong>Build exam readiness.</strong> The Lab practices the interpretation and application used on the midterm and final. Consistent success here strengthens preparation; it does not guarantee an exam grade because exams also draw on class activities, investigations, presentations, readings, and discussions.</p>
+          </div>
+        </section>
+
         <section className="lab-intro" aria-labelledby="lab-title">
           <div className="intro-copy">
             <p className="section-label">Module 01 · Foundations & Alignment</p>
@@ -361,16 +390,39 @@ export default function AssessmentLab() {
           </div>
         </section>
 
-        <section className="module-map" aria-labelledby="module-map-title">
+        <section className="project-guide" id="project-guide" aria-labelledby="project-guide-title">
+          <div className="section-heading">
+            <p className="section-label">Semester project guide</p>
+            <h2 id="project-guide-title">One investigation, developed in three stages.</h2>
+            <p>The Lab modules supply the reasoning tools for each stage. Your group keeps the same assessment problem, incorporates feedback, and makes a progressively stronger claim.</p>
+          </div>
+          <ol className="project-stages">
+            {projectStages.map((stage) => (
+              <li key={stage.number}>
+                <div className="project-stage-heading"><span>{stage.number}</span><small>{stage.timing}</small></div>
+                <h3>{stage.title}</h3>
+                <p>{stage.detail}</p>
+                <div className="project-stage-meta"><span>{stage.modules}</span><strong>{stage.result}</strong></div>
+              </li>
+            ))}
+          </ol>
+          <p className="schedule-note">Dates follow the tentative Fall 2026 syllabus. Canvas and in-class announcements are the official source for schedule changes and submission instructions.</p>
+        </section>
+
+        <section className="module-map" id="course-roadmap" aria-labelledby="module-map-title">
           <div className="section-heading">
             <p className="section-label">Course progression</p>
             <h2 id="module-map-title">Eight modules, one connected practice.</h2>
+            <p>Use these syllabus windows to revisit a module before class application, project work, or exam review. Some topics overlap because the project develops alongside the course.</p>
           </div>
           <ol>
             {modules.map((module, index) => (
-              <li key={module} className={index === 0 ? 'available' : ''}>
+              <li key={module.title} className={index === 0 ? 'available' : ''}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{module}</strong>
+                <small>{module.timing}</small>
+                <strong>{module.title}</strong>
+                <span className="module-project">{module.project}</span>
+                <span className="module-exam">{module.exam}</span>
                 {index === 0 ? <span className="module-state">Available</span> : <LockKeyhole size={16} aria-label="Planned" />}
               </li>
             ))}
