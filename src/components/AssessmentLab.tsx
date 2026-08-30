@@ -43,7 +43,7 @@ function PathwayChooser({ onChoose }: { onChoose: (pathway: PathwayId) => void }
         <p className="privacy-note"><Eye size={17} aria-hidden="true" /> Your choice and progress remain in this browser.</p>
       </div>
       <div className="course-art">
-        <img src={`${import.meta.env.BASE_URL}images/pe3565-course-graphic.png`} alt="Measurement and Assessment course graphic connecting performance testing, data analysis, improvement, quantitative analysis, collaborative interpretation, assessment, and measurement" />
+        <img src={`${import.meta.env.BASE_URL}/images/pe3565-course-graphic.png`} alt="Measurement and Assessment course graphic connecting performance testing, data analysis, improvement, quantitative analysis, collaborative interpretation, assessment, and measurement" />
       </div>
       <div className="pathway-grid" aria-label="Choose a professional pathway">
         {pathways.map((pathway, index) => (
@@ -248,7 +248,7 @@ export default function AssessmentLab() {
             <a className="primary-button" href="#current-activity">Continue module <ArrowRight size={18} aria-hidden="true" /></a>
           </div>
           <figure className="intro-art">
-            <img src={`${import.meta.env.BASE_URL}images/pe3565-course-graphic.png`} alt="The course model linking measurement, assessment, performance testing, data analysis, improvement, quantitative analysis, and collaborative interpretation" />
+            <img src={`${import.meta.env.BASE_URL}/images/pe3565-course-graphic.png`} alt="The course model linking measurement, assessment, performance testing, data analysis, improvement, quantitative analysis, and collaborative interpretation" />
             <figcaption>Measurement · evidence · interpretation · decision</figcaption>
           </figure>
         </section>
