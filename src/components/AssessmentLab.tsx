@@ -473,6 +473,14 @@ export default function AssessmentLab() {
               </li>
             ))}
           </ol>
+          <div className="project-studio-entry">
+            <div>
+              <p className="section-label">Before forming your group</p>
+              <h3>Explore a project direction to discuss.</h3>
+              <p>Use the individual Project Studio to clarify interests and leave with a compact concept brief for class conversation.</p>
+            </div>
+            <a className="primary-button" href={`${import.meta.env.BASE_URL}/project/`}>Explore the Project Studio <ArrowRight size={18} aria-hidden="true" /></a>
+          </div>
           <p className="schedule-note">Dates follow the tentative Fall 2026 syllabus. Canvas and in-class announcements are the official source for schedule changes and submission instructions.</p>
         </section>
 

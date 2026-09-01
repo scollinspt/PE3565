@@ -103,6 +103,11 @@ export type MatchResult = {
   explanation: string[];
 };
 
+export type MatcherOption<Id extends string> = {
+  id: Id;
+  label: string;
+};
+
 export const projectDirections: ProjectDirection[] = [
   { id: 'describe', label: 'Describe current performance, learning, behavior, or capacity', description: 'Focus on understanding what is happening now.' },
   { id: 'compare', label: 'Compare performance, groups, conditions, or methods', description: 'Focus on similarities, differences, or relative performance.' },
@@ -120,7 +125,7 @@ type Weights = Partial<Record<FocusedDirectionId, number>>;
 const directionById = Object.fromEntries(projectDirections.map((direction) => [direction.id, direction])) as Record<DirectionId, ProjectDirection>;
 const focusedDirectionIds = projectDirections.filter((direction) => direction.id !== 'open').map((direction) => direction.id as FocusedDirectionId);
 
-const interestLabels: Record<InterestId, string> = {
+export const interestLabels: Record<InterestId, string> = {
   knowledge: 'Knowledge and understanding',
   'motor-skill-acquisition': 'Motor skill acquisition',
   'immediate-skill-performance': 'Immediate skill performance',
@@ -135,7 +140,7 @@ const interestLabels: Record<InterestId, string> = {
   other: 'Something else',
 };
 
-const questionLabels: Record<QuestionInterestId, string> = {
+export const questionLabels: Record<QuestionInterestId, string> = {
   describe: 'What does current performance, knowledge, behavior, or capacity look like?',
   compare: 'How do people, groups, conditions, or methods compare?',
   learning: 'Does learning or skill develop with instruction or practice?',
@@ -149,7 +154,7 @@ const questionLabels: Record<QuestionInterestId, string> = {
   other: 'Something else',
 };
 
-const decisionLabels: Record<DecisionId, string> = {
+export const decisionLabels: Record<DecisionId, string> = {
   understand: 'Understand current performance, learning, behavior, or capacity',
   'plan-adjust': 'Plan or adjust instruction, practice, training, or support',
   feedback: 'Give useful feedback',
@@ -163,7 +168,7 @@ const decisionLabels: Record<DecisionId, string> = {
   other: 'Something else',
 };
 
-const evidenceLabels: Record<EvidenceId, string> = {
+export const evidenceLabels: Record<EvidenceId, string> = {
   'physical-measurements': 'Physical measurements such as time, distance, repetitions, workload, or physiological responses',
   'assessment-scores': 'Scores from a test or established assessment',
   'ratings-rubrics': 'Checklists, rating scales, or rubric scores',
@@ -177,7 +182,7 @@ const evidenceLabels: Record<EvidenceId, string> = {
   other: 'Something else',
 };
 
-const contextLabels: Record<ContextId, string> = {
+export const contextLabels: Record<ContextId, string> = {
   'physical-education': 'Physical education',
   'health-education': 'Health education',
   'adventure-outdoor': 'Adventure or outdoor education',
@@ -192,7 +197,7 @@ const contextLabels: Record<ContextId, string> = {
   open: 'I am open to any context',
 };
 
-const assessmentApproachLabels: Record<AssessmentApproachId, string> = {
+export const assessmentApproachLabels: Record<AssessmentApproachId, string> = {
   established: 'Use an established assessment or instrument',
   adapt: 'Adapt an established assessment for a different context or purpose',
   original: 'Create an original assessment, scoring method, or measurement approach',
@@ -202,13 +207,36 @@ const assessmentApproachLabels: Record<AssessmentApproachId, string> = {
   other: 'Something else',
 };
 
-const methodLabels: Record<MethodId, string> = {
+export const methodLabels: Record<MethodId, string> = {
   quantitative: 'Quantitative: working primarily with numerical measurements, scores, counts, or statistical comparisons',
   qualitative: 'Qualitative: working primarily with observations, descriptions, experiences, explanations, or meanings',
   mixed: 'Mixed methods: intentionally combining quantitative and qualitative evidence',
   unsure: 'I am not sure yet',
   open: 'I am open to any approach',
 };
+
+export const opennessLabels: Record<OpennessId, string> = {
+  'fairly-clear': 'I have a fairly clear interest or question, but the details can change',
+  'few-directions': 'I am deciding among a few possible directions',
+  'many-directions': 'I am interested in many directions and would like to see what emerges in a group',
+  'almost-anything': 'I am open to almost anything',
+  'no-direction': 'I do not have a direction yet',
+};
+
+function optionsFromLabels<Id extends string>(labels: Record<Id, string>): MatcherOption<Id>[] {
+  return Object.entries(labels).map(([id, label]) => ({ id: id as Id, label: label as string }));
+}
+
+export const matcherOptions = {
+  interest: optionsFromLabels(interestLabels),
+  questionInterest: optionsFromLabels(questionLabels),
+  decision: optionsFromLabels(decisionLabels),
+  evidence: optionsFromLabels(evidenceLabels),
+  contexts: optionsFromLabels(contextLabels),
+  assessmentApproach: optionsFromLabels(assessmentApproachLabels),
+  methods: optionsFromLabels(methodLabels),
+  openness: optionsFromLabels(opennessLabels),
+} as const;
 
 const interestWeights: Record<InterestId, Weights> = {
   knowledge: { learning: 3, describe: 1 },
