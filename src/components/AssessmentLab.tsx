@@ -12,6 +12,7 @@ import {
   Gauge,
   GraduationCap,
   Lightbulb,
+  Layers3,
   RotateCcw,
   Route,
   Target,
@@ -88,6 +89,9 @@ function PathwayChooser({ onChoose }: { onChoose: (pathway: PathwayId) => void }
           <p><strong>About your progress</strong>Your pathway, completed activities, and XP are saved only in this browser. Progress does not sync across devices or count as a Canvas grade.</p>
         </div>
         <PrivacyDetails />
+        <a className="glossary-entry-link" href={`${import.meta.env.BASE_URL}/glossary/`}>
+          <Layers3 size={18} aria-hidden="true" /> Study with Glossary Cards <ArrowRight size={17} aria-hidden="true" />
+        </a>
       </div>
       <div className="course-art">
         <img src={`${import.meta.env.BASE_URL}/images/pe3565-course-graphic.png`} alt="Measurement and Assessment course graphic connecting performance testing, data analysis, improvement, quantitative analysis, collaborative interpretation, assessment, and measurement" />
@@ -279,9 +283,14 @@ export default function AssessmentLab() {
     <div className="lab-shell" style={{ '--pathway-accent': pathway.accent } as React.CSSProperties}>
       <a className="skip-link" href="#main-content">Skip to learning activity</a>
       <header className="lab-header">
-        <a className="lab-brand" href={`${import.meta.env.BASE_URL}`} aria-label="PE3565 Assessment Lab home">
-          <span>PE</span><strong>Assessment Lab</strong>
-        </a>
+        <div className="lab-primary-nav">
+          <a className="lab-brand" href={`${import.meta.env.BASE_URL}`} aria-label="PE3565 Assessment Lab home">
+            <span>PE</span><strong>Assessment Lab</strong>
+          </a>
+          <a className="glossary-header-link" href={`${import.meta.env.BASE_URL}/glossary/`}>
+            <Layers3 size={17} aria-hidden="true" /> Glossary Cards
+          </a>
+        </div>
         <div className="header-progress" aria-label={`Level ${level}, ${progress.xp} experience points`}>
           <span>Level {level}</span>
           <div className="xp-track"><span style={{ width: `${Math.min(100, (progress.xp % 35) / 35 * 100)}%` }} /></div>

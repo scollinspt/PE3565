@@ -1,0 +1,27 @@
+---
+import GlossaryCards from '../components/GlossaryCards';
+import '../styles/global.css';
+import '../styles/glossary.css';
+
+const cloudflareAnalyticsToken = import.meta.env.PROD ? '83448983f4314f9ebb5dbc1aa3e5ef4b' : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Study the PE3565 course glossary with customizable, reversible index cards." />
+    <meta name="theme-color" content="#f7f5ef" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap" rel="stylesheet" />
+    {cloudflareAnalyticsToken && (
+      <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token":"${cloudflareAnalyticsToken}"}`}></script>
+    )}
+    <title>Glossary Cards · PE3565 Assessment Lab</title>
+  </head>
+  <body>
+    <GlossaryCards client:load />
+  </body>
+</html>
