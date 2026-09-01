@@ -15,7 +15,7 @@ npm run dev
 
 Create a production build with `npm run build`. The site is configured for publication at `https://scollinspt.github.io/PE3565/` through GitHub Pages.
 
-See [docs/DESIGN-BRIEF.md](docs/DESIGN-BRIEF.md) for the learning and product design.
+See [docs/DESIGN-BRIEF.md](docs/DESIGN-BRIEF.md) for the learning and product design. The proposed, not-yet-implemented Project Studio is specified separately in [docs/PROJECT-STUDIO-SPEC.md](docs/PROJECT-STUDIO-SPEC.md).
 
 ## Content Boundary
 
