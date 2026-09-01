@@ -458,7 +458,20 @@ The result may display characteristics without multiplying them into separate pr
 - Free text is never interpreted or scored.
 - Openness is evaluated explicitly rather than inferred from arbitrary missing data alone.
 
-Exact numerical weights and thresholds remain to be specified and tested before implementation.
+### Tested Scoring Matrix
+
+The Stage 1 pure matcher uses fixed integer support weights. Scores are internal only and must never be displayed to students.
+
+- Kind of question is the anchor: its corresponding direction receives 6 points. Retention and transfer also provide 2 points to learning; learning provides 1 point to change; comparison provides 1 point to description.
+- Current interest provides up to 3 points to its closest direction and, where conceptually useful, 1 point to one or two related directions. Broad fitness, health-participation, and readiness interests provide 2 points to description plus limited related support.
+- Possible decision provides up to 2 points to its closest direction and at most 1 point to a related direction.
+- Assessment approach provides 4 points for creating an original approach, 3 points for adapting or combining approaches, and 1 quality point for using an established instrument.
+- Each distinct focused evidence selection provides at most 1 point to each supported direction. Duplicate selections are ignored.
+- Context and method direction receive no score.
+- Open, unsure, other, and skipped responses receive no score.
+- Ties among focused directions are resolved in the published direction order so identical answers always produce identical results.
+
+These weights allow a strong combination of current interest, decision, and assessment approach to matter while making the kind-of-question response the usual anchor.
 
 ### Open Result Rules
 
@@ -468,6 +481,13 @@ Exact numerical weights and thresholds remain to be specified and tested before 
 - Several major questions receive open or unsure answers and no focused direction clearly leads.
 - Several directions are nearly tied and the student indicates broad flexibility.
 - Too few focused responses are available and the student knowingly continues to an open result.
+
+The tested precedence rules implement those cases as follows:
+
+- **I am open to almost anything** and **I do not have a direction yet** always make the open result primary.
+- Three or more open, unsure, or other responses among current interest, kind of question, possible decision, and assessment approach make the open result primary when no focused direction has reached the 6-point anchor weight.
+- **I am interested in many directions** makes the open result primary when the two leading focused directions are no more than 1 point apart.
+- With one or fewer focused major responses, a leading focused score below 3 is insufficient and produces the open result.
 
 Open does not automatically become primary when:
 
@@ -483,6 +503,8 @@ An open result is valid, not an error or deficit.
 - Alternatives are unordered.
 - Do not add alternatives merely to fill the interface.
 - Do not display scores, rankings, confidence percentages, or pseudo-precision.
+
+A focused direction is meaningfully supported as an alternative when it has at least 3 points and is no more than 4 points below the leading focused score. No more than two alternatives are returned. Their display is unordered even though the pure function uses deterministic direction order to choose which two survive when more than two qualify.
 
 ### Match Explanation
 
@@ -882,9 +904,6 @@ Assertions should verify:
 
 The following items remain intentionally unresolved:
 
-- Exact numerical matcher weights.
-- Threshold for a meaningfully supported alternative.
-- Tie threshold that contributes to an open result.
 - Full inspiration-example set for all eight directions and varied contexts.
 - Neutral rubric-writing example.
 - Exact copy formats for rich table and plain-text fallback.
